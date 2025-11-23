@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.projeto.courseSpringBoot.entities.Category;
 import com.projeto.courseSpringBoot.entities.Order;
 import com.projeto.courseSpringBoot.entities.OrderItem;
+import com.projeto.courseSpringBoot.entities.Payment;
 import com.projeto.courseSpringBoot.entities.Product;
 import com.projeto.courseSpringBoot.entities.User;
 import com.projeto.courseSpringBoot.entities.enums.orderStatus;
@@ -91,6 +92,11 @@ public class TestConfig implements CommandLineRunner {
 		
 		orderitemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
+		Payment pay1 = new Payment(null,  Instant.parse("2019-06-20T21:53:07Z"), o1);
+		// para salvar um objeto dependente numa relação 1 para 1:
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 	}
 	
 	
